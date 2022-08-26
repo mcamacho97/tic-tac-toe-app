@@ -1,7 +1,7 @@
 const Square = (props) => {
     return (
         <button className="square">
-            {/* TODO */}
+            {props.value}
         </button>
     )
 }

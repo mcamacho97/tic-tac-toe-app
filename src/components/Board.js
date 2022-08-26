@@ -1,6 +1,6 @@
 import Square from "./Square";
 
-const Board = (props) => {
+const Board = () => {
   const status = "Next player: X";
   return (
     <div>
