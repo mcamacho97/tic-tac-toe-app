@@ -1,9 +1,13 @@
 const Square = (props) => {
-    return (
-        <button className="square">
-            {props.value}
-        </button>
-    )
-}
+  const ClickButtonHandler = () => {
+    console.log(`click in ${props.value}`);
+  };
+
+  return (
+    <button className="square" onClick={ClickButtonHandler}>
+      {props.value}
+    </button>
+  );
+};
 
 export default Square;
