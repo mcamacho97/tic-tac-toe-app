@@ -1,24 +1,29 @@
 import Square from "./Square";
 
-const Board = () => {
+const Board = (props) => {
+
+  const renderSquare = (i) => {
+    return <Square value={i} />;
+  }
+
   const status = "Next player: X";
   return (
     <div>
       <div className="status">{status}</div>
       <div className="board-row">
-        <Square value={0} />
-        <Square value={1} />
-        <Square value={2} />
+        <Square value={renderSquare(0)} />
+        <Square value={renderSquare(1)} />
+        <Square value={renderSquare(2)} />
       </div>
       <div className="board-row">
-        <Square value={3} />
-        <Square value={4} />
-        <Square value={5} />
+        <Square value={renderSquare(3)} />
+        <Square value={renderSquare(4)} />
+        <Square value={renderSquare(5)} />
       </div>
       <div className="board-row">
-        <Square value={6} />
-        <Square value={7} />
-        <Square value={9} />
+        <Square value={renderSquare(6)} />
+        <Square value={renderSquare(7)} />
+        <Square value={renderSquare(8)} />
       </div>
     </div>
   );
