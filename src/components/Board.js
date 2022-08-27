@@ -1,29 +1,40 @@
+import { useState } from "react";
 import Square from "./Square";
 
-const Board = (props) => {
+const Board = () => {
+  const [squares, setSquares] = useState(Array(9).fill(null));
+  
 
-  const renderSquare = (i) => {
-    return <Square value={i} />;
+  const handleClick = (i) => {
+    const squareClick = squares.slice();
+    squareClick[i] = 'X';
+    setSquares(squareClick);
+    console.log('In Board Component')
   }
 
+  const RenderSquare = (i) => {
+    return <Square value={squares[i]} onClick={() => handleClick(i)}/>;
+  };
+
   const status = "Next player: X";
+
   return (
     <div>
       <div className="status">{status}</div>
       <div className="board-row">
-        <Square value={renderSquare(0)} />
-        <Square value={renderSquare(1)} />
-        <Square value={renderSquare(2)} />
+        {RenderSquare(0)}
+        {RenderSquare(1)}
+        {RenderSquare(2)}
       </div>
       <div className="board-row">
-        <Square value={renderSquare(3)} />
-        <Square value={renderSquare(4)} />
-        <Square value={renderSquare(5)} />
+        {RenderSquare(3)}
+        {RenderSquare(4)}
+        {RenderSquare(5)}
       </div>
       <div className="board-row">
-        <Square value={renderSquare(6)} />
-        <Square value={renderSquare(7)} />
-        <Square value={renderSquare(8)} />
+        {RenderSquare(6)}
+        {RenderSquare(7)}
+        {RenderSquare(8)}
       </div>
     </div>
   );
