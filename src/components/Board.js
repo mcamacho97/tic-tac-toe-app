@@ -7,18 +7,18 @@ const Board = () => {
     xIsNext: true,
   });
 
-  const HandleClick = (i) => {
+  const ClickSquareHandler = (i) => {
     const squares = board.squares.slice();
     squares[i] = board.xIsNext ? "X" : "O";
     setBoard({ squares: squares, xIsNext: !board.xIsNext });
-    console.log("In Board Component " + squares);
+    //console.log("In Board Component " + squares);
   };
 
   const RenderSquare = (i) => {
-    return <Square value={board.squares[i]} onClick={() => HandleClick(i)} />;
+    return <Square value={board.squares[i]} onClick={() => ClickSquareHandler(i)} />;
   };
 
-  const status = "Next player: X";
+  const status = `Next player: ${board.xIsNext ? "X" : "O"}`;
 
   return (
     <div>
