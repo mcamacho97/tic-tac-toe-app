@@ -2,18 +2,23 @@ import { useState } from "react";
 import Square from "./Square";
 
 const Board = () => {
-  const [squares, setSquares] = useState(Array(9).fill(null));
-  
+  // const [squares, setSquares] = useState();
+  // const [xIsNext, setXIsNext] = useState(true);
+
+  const [board, setBoard] = useState({
+    squares: Array(9).fill(null),
+    xIsNext: true,
+  });
 
   const handleClick = (i) => {
-    const squareClick = squares.slice();
-    squareClick[i] = 'X';
-    setSquares(squareClick);
-    console.log('In Board Component')
-  }
+    const squares = board.squares.slice();
+    squares[i] = board.xIsNext ? "X" : "O";
+    setBoard({ squares: squares, xIsNext: !board.xIsNext });
+    console.log("In Board Component " + squares);
+  };
 
   const RenderSquare = (i) => {
-    return <Square value={squares[i]} onClick={() => handleClick(i)}/>;
+    return <Square value={board.squares[i]} onClick={() => handleClick(i)} />;
   };
 
   const status = "Next player: X";
