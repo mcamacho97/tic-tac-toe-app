@@ -9,16 +9,54 @@ const Board = () => {
 
   const ClickSquareHandler = (i) => {
     const squares = board.squares.slice();
+
+    if (CalculateWinner(squares) || squares[i]){
+      return;
+    }
     squares[i] = board.xIsNext ? "X" : "O";
     setBoard({ squares: squares, xIsNext: !board.xIsNext });
     //console.log("In Board Component " + squares);
   };
 
   const RenderSquare = (i) => {
-    return <Square value={board.squares[i]} onClick={() => ClickSquareHandler(i)} />;
+    return (
+      <Square value={board.squares[i]} onClick={() => ClickSquareHandler(i)} />
+    );
   };
 
-  const status = `Next player: ${board.xIsNext ? "X" : "O"}`;
+  const CalculateWinner = (squares) => {
+    const lines = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6],
+    ];
+
+    for (let i = 0; i < lines.length; i++) {
+      const [a, b, c] = lines[i];
+      if (
+        squares[a] &&
+        squares[a] === squares[b] &&
+        squares[a] === squares[c]
+      ) {
+        return squares[a];
+      }
+    }
+    return null;
+  };
+
+  const winner = CalculateWinner(board.squares);
+  let status;
+
+  if (winner) {
+    status = `Winner ${winner}`;
+  }else {
+    status =  `Next player: ${board.xIsNext ? "X" : "O"}`;
+  }
 
   return (
     <div>
